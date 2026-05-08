@@ -1,0 +1,46 @@
+{% extends 'layout.html' %}
+{% block content %}
+<section class="section">
+  <div class="section-title">Panel administrativo</div>
+  <div class="card hero-card">
+    <h3>Costos de inscripción</h3>
+    <table class="table">
+      <thead>
+        <tr>
+          <th>Concepto</th>
+          <th>Precio</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for id, concepto, precio in costos %}
+        <tr>
+          <td>{{ concepto }}</td>
+          <td>{{ precio }}</td>
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </div>
+  <div class="grid">
+    <div class="card">
+      <h3>Avisos</h3>
+      {% for id, titulo, descripcion, fecha in avisos %}
+      <div style="margin-bottom:1rem;">
+        <strong>{{ titulo }}</strong>
+        <p>{{ descripcion }}</p>
+        <small style="color:#64748b;">{{ fecha }}</small>
+      </div>
+      {% endfor %}
+    </div>
+    <div class="card">
+      <h3>Eventos</h3>
+      {% for id, titulo, fecha, descripcion in eventos %}
+      <div style="margin-bottom:1rem;">
+        <strong>{{ fecha }} – {{ titulo }}</strong>
+        <p>{{ descripcion }}</p>
+      </div>
+      {% endfor %}
+    </div>
+  </div>
+</section>
+{% endblock %}

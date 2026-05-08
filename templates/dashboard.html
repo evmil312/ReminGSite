@@ -1,0 +1,56 @@
+{% extends 'layout.html' %}
+{% block content %}
+<section class="section">
+  <div class="section-title">Bienvenido, {{ session.get('user_name') }}</div>
+  <div class="dashboard-grid">
+    <div class="card">
+      <h3><span class="alert-icon">&#9888;</span> Avisos recientes</h3>
+      {% for titulo, descripcion, fecha in avisos %}
+      <div style="margin-bottom:1rem;">
+        <strong>{{ titulo }}</strong>
+        <p>{{ descripcion }}</p>
+        <small style="color:#64748b;">{{ fecha }}</small>
+      </div>
+      {% else %}
+      <p>No hay avisos nuevos por el momento.</p>
+      {% endfor %}
+    </div>
+    <div class="card calendar-card">
+      <div class="calendar-card-header">
+        <div>
+          <h3>Calendario escolar</h3>
+          <p class="calendar-subtitle">Selecciona un día para ver los eventos directos</p>
+        </div>
+      </div>
+      <div class="calendar-main">
+        <div class="calendar-grid-simple">
+          {% for day in range(1, 31) %}
+            {% set event_count = 0 %}
+            {% for titulo, fecha, descripcion in eventos %}
+              {% if fecha.split('/')[0]|int == day %}
+                {% set event_count = event_count + 1 %}
+              {% endif %}
+            {% endfor %}
+            <button type="button" class="calendar-day{% if event_count > 0 %} has-event{% endif %}" data-day="{{ day }}">
+              <span class="day-number">{{ day }}</span>
+              {% if event_count > 0 %}
+                <span class="calendar-dot">{{ event_count }}</span>
+              {% endif %}
+            </button>
+          {% endfor %}
+        </div>
+        <div class="calendar-details">
+          <h4 id="selectedDateHeading">Selecciona un día</h4>
+          <div class="event-list-card" id="selectedEventList">
+            <p class="no-event">Haz clic en un día con punto para ver el evento aquí.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+{% set eventos_json = eventos|tojson %}
+<script id="eventos-data" type="application/json">{{ eventos_json }}</script>
+<script src="/static/js/dashboard.js"></script>
+{% endblock %}

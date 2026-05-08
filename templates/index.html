@@ -1,0 +1,60 @@
+{% extends 'layout.html' %}
+{% block content %}
+<section class="hero minimal-hero">
+  <div class="hero-content">
+    <p class="eyebrow">Colegio Remington</p>
+    <h1>Educación clara, cercana y de calidad.</h1>
+    <p class="hero-text">Un sitio limpio para conocer nuestros servicios, oferta educativa y formas de contacto.</p>
+    <div class="hero-buttons">
+      <a class="btn btn-primary" href="{{ url_for('oferta') }}">Conocer oferta</a>
+      <a class="btn btn-secondary" href="{{ url_for('contacto') }}">Contacto</a>
+    </div>
+  </div>
+  <div class="hero-visual">
+    <img src="{{ url_for('static', filename='images/colegio.jpeg') }}" alt="Colegio Remington" loading="lazy">
+  </div>
+</section>
+
+<section class="section section-overview">
+  <div class="page-header">
+    <h2 class="page-title">Explora nuestro colegio</h2>
+    <div class="page-underline"></div>
+    <p class="page-subtitle">Toda la información importante en una presentación sencilla y ordenada.</p>
+  </div>
+  <div class="features-grid">
+    <div class="feature-card">
+      <h3>Noticias y avisos</h3>
+      <p>Accede a comunicados oficiales y novedades del colegio de forma rápida.</p>
+      <a class="feature-link" href="{{ url_for('dashboard') }}">Ver avisos</a>
+    </div>
+    <div class="feature-card">
+      <h3>Calendario escolar</h3>
+      <p>Consulta fechas clave, eventos y actividades del año escolar.</p>
+      <a class="feature-link" href="{{ url_for('dashboard') }}">Ver calendario</a>
+    </div>
+    <div class="feature-card">
+      <h3>Contacto simple</h3>
+      <p>Envíanos tus preguntas o solicitudes desde la página de contacto.</p>
+      <a class="feature-link" href="{{ url_for('contacto') }}">Contactar</a>
+    </div>
+  </div>
+</section>
+
+<section class="section about-preview">
+  <div class="about-grid">
+    <div class="about-image">
+      <img src="{{ url_for('static', filename='images/colegio.jpeg') }}" alt="Instalaciones del colegio">
+    </div>
+    <div class="about-copy">
+      <div class="page-header">
+        <h2 class="page-title">Sobre nosotros</h2>
+        <div class="page-underline"></div>
+        <p class="page-subtitle">Educación con enfoque humano, estructura ordenada y un ambiente seguro.</p>
+      </div>
+      <p>El Colegio Remington ofrece un espacio de aprendizaje moderno, con apoyo académico y actividades que acompañan el crecimiento de cada estudiante.</p>
+      <a class="btn btn-primary" href="{{ url_for('nosotros') }}">Conocer más</a>
+    </div>
+  </div>
+</section>
+{% endblock %}
+

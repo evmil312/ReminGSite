@@ -1,0 +1,134 @@
+{% extends 'layout.html' %}
+
+{% block content %}
+<section class="section">
+  <div class="page-header">
+    <h1 class="page-title">Galería del colegio</h1>
+    <div class="page-underline"></div>
+    <p class="page-subtitle">Descubre las actividades, eventos y momentos especiales del Colegio Remington a través de nuestras fotos. Haz click en cualquier imagen para verla en mayor tamaño.</p>
+  </div>
+
+  <div id="imageModal" class="modal">
+    <div class="modal-content">
+      <span class="modal-close" onclick="closeModal()">&times;</span>
+      <span class="modal-prev" onclick="prevImage()">&#10094;</span>
+      <img id="modalImage" src="" alt="Imagen ampliada">
+      <span class="modal-next" onclick="nextImage()">&#10095;</span>
+    </div>
+  </div>
+
+  <div class="gallery-grid" id="galleryGrid">
+    <div class="gallery-card" onclick="openModal(0)">
+      <img src="{{ url_for('static', filename='images/galeria/colegio-remington-2025-2-500x500.jpeg') }}" alt="Instalaciones modernas del colegio" loading="lazy">
+    </div>
+
+    <div class="gallery-card" onclick="openModal(1)">
+      <img src="{{ url_for('static', filename='images/galeria/colegio-remington-2025-13-500x500.jpeg') }}" alt="Estudiantes en clase" loading="lazy">
+    </div>
+
+    <div class="gallery-card" onclick="openModal(2)">
+      <img src="{{ url_for('static', filename='images/galeria/536268423_1193293912822427_3894022403390052738_n.jpg') }}" alt="Actividades extracurriculares" loading="lazy">
+    </div>
+
+    <div class="gallery-card" onclick="openModal(3)">
+      <img src="{{ url_for('static', filename='images/galeria/547445561_1202378878580597_7669008581147170780_n.jpg') }}" alt="Evento escolar" loading="lazy">
+    </div>
+
+    <div class="gallery-card" onclick="openModal(4)">
+      <img src="{{ url_for('static', filename='images/galeria/591735312_1266615448823606_8852107933149124440_n.jpg') }}" alt="Espacios del colegio" loading="lazy">
+    </div>
+
+    <div class="gallery-card" onclick="openModal(5)">
+      <img src="{{ url_for('static', filename='images/galeria/599511890_1279811294170688_7715248335639490377_n.jpg') }}" alt="Momentos especiales" loading="lazy">
+    </div>
+
+    <div class="gallery-card" onclick="openModal(6)">
+      <img src="{{ url_for('static', filename='images/galeria/599941822_1279809007504250_7746329793886367476_n.jpg') }}" alt="Estudiantes participando" loading="lazy">
+    </div>
+
+    <div class="gallery-card" onclick="openModal(7)">
+      <img src="{{ url_for('static', filename='images/galeria/638320581_1331252382359912_1294142033202239087_n.jpg') }}" alt="Actividades del colegio" loading="lazy">
+    </div>
+
+    <div class="gallery-card" onclick="openModal(8)">
+      <img src="{{ url_for('static', filename='images/galeria/638933847_1331253099026507_1808187061549193675_n.jpg') }}" alt="Vida escolar" loading="lazy">
+    </div>
+
+    <div class="gallery-card" onclick="openModal(9)">
+      <img src="{{ url_for('static', filename='images/galeria/649387389_1346465487505268_7268263643403298128_n.jpg') }}" alt="Eventos especiales" loading="lazy">
+    </div>
+
+    <div class="gallery-card" onclick="openModal(10)">
+      <img src="{{ url_for('static', filename='images/galeria/650275371_1346475147504302_1572185271285217633_n.jpg') }}" alt="Comunidad escolar" loading="lazy">
+    </div>
+
+    <div class="gallery-card" onclick="openModal(11)">
+      <img src="{{ url_for('static', filename='images/galeria/hq720.jpg') }}" alt="Galería del colegio" loading="lazy">
+    </div>
+  </div>
+</section>
+
+<script>
+const galleryImages = [
+  '{{ url_for("static", filename="images/galeria/colegio-remington-2025-2-500x500.jpeg") }}',
+  '{{ url_for("static", filename="images/galeria/colegio-remington-2025-13-500x500.jpeg") }}',
+  '{{ url_for("static", filename="images/galeria/536268423_1193293912822427_3894022403390052738_n.jpg") }}',
+  '{{ url_for("static", filename="images/galeria/547445561_1202378878580597_7669008581147170780_n.jpg") }}',
+  '{{ url_for("static", filename="images/galeria/591735312_1266615448823606_8852107933149124440_n.jpg") }}',
+  '{{ url_for("static", filename="images/galeria/599511890_1279811294170688_7715248335639490377_n.jpg") }}',
+  '{{ url_for("static", filename="images/galeria/599941822_1279809007504250_7746329793886367476_n.jpg") }}',
+  '{{ url_for("static", filename="images/galeria/638320581_1331252382359912_1294142033202239087_n.jpg") }}',
+  '{{ url_for("static", filename="images/galeria/638933847_1331253099026507_1808187061549193675_n.jpg") }}',
+  '{{ url_for("static", filename="images/galeria/649387389_1346465487505268_7268263643403298128_n.jpg") }}',
+  '{{ url_for("static", filename="images/galeria/650275371_1346475147504302_1572185271285217633_n.jpg") }}',
+  '{{ url_for("static", filename="images/galeria/hq720.jpg") }}'
+];
+
+let currentImageIndex = 0;
+
+function openModal(index) {
+  currentImageIndex = index;
+  const modal = document.getElementById('imageModal');
+  const modalImage = document.getElementById('modalImage');
+  modalImage.src = galleryImages[index];
+  modal.classList.add('active');
+  document.body.style.overflow = 'hidden';
+}
+
+function closeModal() {
+  const modal = document.getElementById('imageModal');
+  modal.classList.remove('active');
+  document.body.style.overflow = 'auto';
+}
+
+function nextImage() {
+  currentImageIndex = (currentImageIndex + 1) % galleryImages.length;
+  document.getElementById('modalImage').src = galleryImages[currentImageIndex];
+}
+
+function prevImage() {
+  currentImageIndex = (currentImageIndex - 1 + galleryImages.length) % galleryImages.length;
+  document.getElementById('modalImage').src = galleryImages[currentImageIndex];
+}
+
+// Cerrar modal al hacer click fuera de la imagen
+document.addEventListener('DOMContentLoaded', function() {
+  const modal = document.getElementById('imageModal');
+  modal.addEventListener('click', function(event) {
+    if (event.target === modal) {
+      closeModal();
+    }
+  });
+
+  // Navegación con teclas
+  document.addEventListener('keydown', function(event) {
+    if (modal.classList.contains('active')) {
+      if (event.key === 'ArrowRight') nextImage();
+      if (event.key === 'ArrowLeft') prevImage();
+      if (event.key === 'Escape') closeModal();
+    }
+  });
+});
+</script>
+{% endblock %}
+

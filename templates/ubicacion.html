@@ -1,0 +1,64 @@
+{% extends 'layout.html' %}
+{% block content %}
+<section class="section">
+  <div class="page-header">
+    <h1 class="page-title">Ubicación</h1>
+    <div class="page-underline"></div>
+    <p class="page-subtitle">Encuentra fácilmente nuestro colegio en Mazatlán.</p>
+  </div>
+
+  <div class="centered-content">
+    <div class="location-card">
+      <div class="location-icon">📍</div>
+      <h3>Colegio Remington</h3>
+      <p class="location-address">Av Óscar Pérez Escobosa 10, Real del Valle, 82124 Mazatlán, Sin.</p>
+      <p class="location-description">Estamos ubicados cerca de rutas principales y con acceso seguro para estudiantes y familias.</p>
+      <a class="btn btn-secondary" href="https://www.google.com/maps/search/Colegio+Remington+Mazatlán" target="_blank">Ver en Google Maps</a>
+    </div>
+
+    <div class="map-card">
+      <div class="map-icon">🗺️</div>
+      <h3>Mapa de Ubicación</h3>
+      <div id="map" style="height: 400px; width: 100%; z-index: 1; position: relative; border-radius: 16px;"></div>
+    </div>
+  </div>
+</section>
+
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+
+<script>
+  // Inicializar el mapa con Leaflet (OpenStreetMap)
+  const map = L.map('map').setView([23.2494, -106.4111], 13); // Coordenadas aproximadas de Mazatlán, México
+
+  L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+    attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+  }).addTo(map);
+
+  // Geocodificar la dirección usando Nominatim (gratuito)
+  fetch('https://nominatim.openstreetmap.org/search?format=json&q=Av%20%C3%93scar%20P%C3%A9rez%20Escobosa%2010%2C%20Real%20del%20Valle%2C%2082124%20Mazatl%C3%A1n%2C%20Sin.')
+    .then(response => response.json())
+    .then(data => {
+      if (data.length > 0) {
+        const lat = parseFloat(data[0].lat);
+        const lon = parseFloat(data[0].lon);
+        map.setView([lat, lon], 15);
+        L.marker([lat, lon]).addTo(map)
+          .bindPopup('Colegio Remington<br>Av Óscar Pérez Escobosa 10, Real del Valle, 82124 Mazatlán, Sin.')
+          .openPopup();
+      } else {
+        // Fallback: marcador aproximado si no se encuentra la dirección
+        L.marker([23.2494, -106.4111]).addTo(map)
+          .bindPopup('Colegio Remington<br>Ubicación aproximada: Mazatlán, Sin.')
+          .openPopup();
+      }
+    })
+    .catch(error => {
+      console.error('Error en geocodificación:', error);
+      // Fallback en caso de error
+      L.marker([23.2494, -106.4111]).addTo(map)
+        .bindPopup('Colegio Remington<br>Ubicación aproximada: Mazatlán, Sin.')
+        .openPopup();
+    });
+</script>
+{% endblock %}

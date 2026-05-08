@@ -1,0 +1,131 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ReminGSite - Colegio Remington</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+<body>
+  <header>
+    <div class="navbar">
+      <a class="brand" href="{{ url_for('index') }}">
+        <img class="brand-logo" src="{{ url_for('static', filename='images/remilogo.png') }}" alt="Logo ReminGSite">
+        ReminGSite
+      </a>
+      <nav class="nav-links">
+        <a href="{{ url_for('index') }}">Inicio</a>
+        <a href="{{ url_for('nosotros') }}">Nosotros</a>
+        <a href="{{ url_for('oferta') }}">Oferta</a>
+        <a href="{{ url_for('costos') }}">Costos</a>
+        <a href="{{ url_for('ubicacion') }}">Ubicación</a>
+        <a href="{{ url_for('galeria') }}">Galería</a>
+        <a href="{{ url_for('contacto') }}">Contacto</a>
+        {% if session.get('user_id') %}
+          <a href="{{ url_for('dashboard') }}">Mi cuenta</a>
+          {% if session.get('user_role') == 'admin' %}
+            <a href="{{ url_for('admin') }}">Administrador</a>
+          {% endif %}
+          <a href="{{ url_for('logout') }}">Cerrar sesión</a>
+        {% else %}
+          <a href="{{ url_for('login') }}">Ingresar</a>
+          <a href="{{ url_for('registro') }}">Registrarse</a>
+        {% endif %}
+      </nav>
+      <button class="hamburger" aria-label="Menú">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+    </div>
+  </header>
+
+  {% with messages = get_flashed_messages(with_categories=true) %}
+    {% if messages %}
+      {% for category, message in messages %}
+        <div class="alert alert-{{ category }}">{{ message }}</div>
+      {% endfor %}
+    {% endif %}
+  {% endwith %}
+
+  <main>
+    {% block content %}{% endblock %}
+  </main>
+
+  <footer>
+    <div class="footer-content">
+      <div class="footer-section">
+        <h3>Navegación</h3>
+        <ul>
+          <li><a href="{{ url_for('index') }}">Inicio</a></li>
+          <li><a href="{{ url_for('nosotros') }}">Nosotros</a></li>
+          <li><a href="{{ url_for('oferta') }}">Oferta Académica</a></li>
+          <li><a href="{{ url_for('costos') }}">Costos</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-section">
+        <h3>Información</h3>
+        <ul>
+          <li><a href="{{ url_for('ubicacion') }}">Ubicación</a></li>
+          <li><a href="{{ url_for('contacto') }}">Contacto</a></li>
+          {% if session.get('user_id') %}
+            <li><a href="{{ url_for('dashboard') }}">Mi Cuenta</a></li>
+          {% else %}
+            <li><a href="{{ url_for('login') }}">Ingresar</a></li>
+            <li><a href="{{ url_for('registro') }}">Registrarse</a></li>
+          {% endif %}
+        </ul>
+      </div>
+
+      <div class="footer-section">
+        <h3>Contacto</h3>
+        <p><strong>Teléfono:</strong> <a href="tel:6691161289">669 116 1289</a></p>
+      </div>
+
+      <div class="footer-section">
+        <h3>Síguenos</h3>
+        <div class="social-links">
+          <a href="https://www.facebook.com/ColegioRemingtonAC" target="_blank" rel="noopener noreferrer" title="Facebook">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+              <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/>
+            </svg>
+          </a>
+          <a href="https://www.instagram.com/colegioremington/?hl=es-la" target="_blank" rel="noopener noreferrer" title="Instagram">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+              <rect x="2" y="2" width="20" height="20" rx="4.5" fill="none" stroke="currentColor" stroke-width="1.5"/>
+              <circle cx="12" cy="12" r="3.5" fill="none" stroke="currentColor" stroke-width="1.5"/>
+              <circle cx="18" cy="6" r="1" fill="currentColor"/>
+            </svg>
+          </a>
+          <a href="https://x.com/colegio_remington" target="_blank" rel="noopener noreferrer" title="X">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+              <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24h-6.6l-5.165-6.754-5.913 6.754h-3.308l7.73-8.835L.424 2.25h6.7l4.676 6.188 5.344-6.188zM17.313 20.713h1.823L6.896 4.067H5.001l12.312 16.646z"/>
+            </svg>
+          </a>
+          <a href="https://www.youtube.com/c/ColegioRemington" target="_blank" rel="noopener noreferrer" title="YouTube">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+              <path d="M23.498 6.186a3.016 3.016 0 00-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 00.502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 002.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 002.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/>
+            </svg>
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <div class="footer-bottom">
+      <p>© 2026 Colegio Remington · Sitio institucional ReminGSite</p>
+    </div>
+  </footer>
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      const hamburger = document.querySelector('.hamburger');
+      const navLinks = document.querySelector('.nav-links');
+      hamburger.addEventListener('click', function() {
+        navLinks.classList.toggle('active');
+        hamburger.classList.toggle('active');
+      });
+    });
+  </script>
+</body>
+</html>
+

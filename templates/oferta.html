@@ -1,0 +1,179 @@
+{% extends 'layout.html' %}
+{% block content %}
+<section class="section">
+  <div class="page-header">
+    <h1 class="page-title">Oferta educativa</h1>
+    <div class="page-underline"></div>
+    <p class="page-subtitle">Descubre nuestros programas académicos diseñados para el desarrollo integral de cada estudiante.</p>
+  </div>
+
+  <div class="section-nav">
+    <button class="section-btn active" onclick="showSection('maternal')">Maternal</button>
+    <button class="section-btn" onclick="showSection('primaria')">Primaria</button>
+    <button class="section-btn" onclick="showSection('secundaria')">Secundaria</button>
+    <button class="section-btn" onclick="showSection('preparatoria')">Preparatoria</button>
+  </div>
+
+  <div id="maternal" class="offer-section active">
+    <h2>Maternal</h2>
+    <div class="offer-section-content">
+      <div class="offer-section-image" onclick="openOfertaModal(this)">
+        <img src="{{ url_for('static', filename='images/oferta/670896321_1376244037860746_3029206592576403750_n.jpg') }}" alt="Maternal" loading="lazy" class="clickable-image">
+      </div>
+      <div class="centered-grid">
+        <div class="offer-card">
+          <div class="offer-icon">👶</div>
+          <h3>Desarrollo temprano</h3>
+          <p>Atención personalizada enfocada en el desarrollo cognitivo, emocional y social en los primeros años.</p>
+        </div>
+        <div class="offer-card">
+          <div class="offer-icon">🎨</div>
+          <h3>Actividades creativas</h3>
+          <p>Talleres de arte, música y juegos que estimulan la creatividad y el aprendizaje exploratorio.</p>
+        </div>
+        <div class="offer-card">
+          <div class="offer-icon">👨‍👩‍👧</div>
+          <h3>Ambiente seguro</h3>
+          <p>Espacios cómodos y seguros con personal capacitado que facilita un desarrollo armónico.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div id="primaria" class="offer-section">
+    <h2>Primaria</h2>
+    <div class="offer-section-content">
+      <div class="offer-section-image" onclick="openOfertaModal(this)">
+        <img src="{{ url_for('static', filename='images/oferta/671193035_18191346277366045_3753401873032920026_n.jpg') }}" alt="Primaria" loading="lazy" class="clickable-image">
+      </div>
+      <div class="centered-grid">
+        <div class="offer-card">
+          <div class="offer-icon">📚</div>
+          <h3>Competencias académicas</h3>
+          <p>Programa completo con énfasis en competencias comunicativas, científicas y digitales desde una base afectiva y reflexiva.</p>
+        </div>
+        <div class="offer-card">
+          <div class="offer-icon">💻</div>
+          <h3>Tecnología e innovación</h3>
+          <p>Introducción a herramientas digitales y pensamiento computacional como parte integral del aprendizaje.</p>
+        </div>
+        <div class="offer-card">
+          <div class="offer-icon">🌍</div>
+          <h3>Formación integral</h3>
+          <p>Desarrollo de habilidades sociales, valores y responsabilidad con el medio ambiente.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div id="secundaria" class="offer-section">
+    <h2>Secundaria</h2>
+    <div class="offer-section-content">
+      <div class="offer-section-image" onclick="openOfertaModal(this)">
+        <img src="{{ url_for('static', filename='images/oferta/672155588_1376992224452594_5927627366459634752_n.jpg') }}" alt="Secundaria" loading="lazy" class="clickable-image">
+      </div>
+      <div class="centered-grid">
+        <div class="offer-card">
+          <div class="offer-icon">🎓</div>
+          <h3>Liderazgo académico</h3>
+          <p>Trayectoria académica con énfasis en liderazgo, pensamiento crítico y orientación vocacional.</p>
+        </div>
+        <div class="offer-card">
+          <div class="offer-icon">🔬</div>
+          <h3>Ciencia y tecnología</h3>
+          <p>Laboratorios equipados y metodología experimental para descubrir la ciencia de manera práctica.</p>
+        </div>
+        <div class="offer-card">
+          <div class="offer-icon">🌟</div>
+          <h3>Preparación futuro</h3>
+          <p>Orientación vocacional y preparación integral para la educación superior y desafíos del futuro.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div id="preparatoria" class="offer-section">
+    <h2>Preparatoria</h2>
+    <div class="offer-section-content">
+      <div class="offer-section-image" onclick="openOfertaModal(this)">
+        <img src="{{ url_for('static', filename='images/oferta/540067010_1190487426436409_727031661902977086_n.jpg') }}" alt="Preparatoria" loading="lazy" class="clickable-image">
+      </div>
+      <div class="centered-grid">
+        <div class="offer-card">
+          <div class="offer-icon">🎯</div>
+          <h3>Excelencia académica</h3>
+          <p>Programas rigurosos que preparan a los estudiantes para acceder a universidades de prestigio.</p>
+        </div>
+        <div class="offer-card">
+          <div class="offer-icon">📈</div>
+          <h3>Especialización</h3>
+          <p>Opciones de especialización en ciencias, humanidades o áreas técnicas según intereses.</p>
+        </div>
+        <div class="offer-card">
+          <div class="offer-icon">⚽</div>
+          <h3>Extracurriculares</h3>
+          <p>Actividades deportivas, artísticas y tecnológicas que complementan la formación integral.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</section>
+
+<div id="ofertaModal" class="modal">
+  <div class="modal-content">
+    <span class="modal-close" onclick="closeOfertaModal()">&times;</span>
+    <img id="ofertaModalImage" src="" alt="Imagen ampliada">
+  </div>
+</div>
+
+<script>
+function showSection(sectionId) {
+  // Hide all sections
+  const sections = document.querySelectorAll('.offer-section');
+  sections.forEach(section => section.classList.remove('active'));
+
+  // Remove active from buttons
+  const buttons = document.querySelectorAll('.section-btn');
+  buttons.forEach(button => button.classList.remove('active'));
+
+  // Show selected section
+  document.getElementById(sectionId).classList.add('active');
+
+  // Add active to clicked button
+  event.target.classList.add('active');
+}
+
+function openOfertaModal(element) {
+  const modal = document.getElementById('ofertaModal');
+  const modalImage = document.getElementById('ofertaModalImage');
+  const img = element.querySelector('img');
+  modalImage.src = img.src;
+  modal.classList.add('active');
+  document.body.style.overflow = 'hidden';
+}
+
+function closeOfertaModal() {
+  const modal = document.getElementById('ofertaModal');
+  modal.classList.remove('active');
+  document.body.style.overflow = 'auto';
+}
+
+// Cerrar modal al hacer click fuera de la imagen
+document.addEventListener('DOMContentLoaded', function() {
+  const modal = document.getElementById('ofertaModal');
+  modal.addEventListener('click', function(event) {
+    if (event.target === modal) {
+      closeOfertaModal();
+    }
+  });
+
+  // Cerrar con tecla Escape
+  document.addEventListener('keydown', function(event) {
+    if (modal.classList.contains('active')) {
+      if (event.key === 'Escape') closeOfertaModal();
+    }
+  });
+});
+</script>
+{% endblock %}

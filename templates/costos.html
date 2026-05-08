@@ -1,0 +1,214 @@
+{% extends 'layout.html' %}
+{% block content %}
+<section class="section">
+  <div class="page-header">
+    <h1 class="page-title">Costos</h1>
+    <div class="page-underline"></div>
+    <p class="page-subtitle">Información clara y transparente sobre nuestros servicios educativos por nivel.</p>
+  </div>
+
+  <div class="section-nav">
+    <button class="section-btn active" onclick="showSection('maternal')">Maternal</button>
+    <button class="section-btn" onclick="showSection('primaria')">Primaria</button>
+    <button class="section-btn" onclick="showSection('secundaria')">Secundaria</button>
+    <button class="section-btn" onclick="showSection('preparatoria')">Preparatoria</button>
+  </div>
+
+  <div id="maternal" class="cost-section active">
+    <h2>Maternal</h2>
+    <div class="costs-grid">
+      <div class="cost-item">
+        <div class="cost-header">
+          <h3>Inscripción anual</h3>
+          <div class="cost-badge">$ 2,500</div>
+        </div>
+        <div class="cost-details">
+          <p>Cuota única para el ingreso al nivel maternal.</p>
+        </div>
+      </div>
+      <div class="cost-item">
+        <div class="cost-header">
+          <h3>Mensualidad</h3>
+          <div class="cost-badge">$ 3,200</div>
+        </div>
+        <div class="cost-details">
+          <p>Pago mensual por servicios educativos.</p>
+        </div>
+      </div>
+      <div class="cost-item">
+        <div class="cost-header">
+          <h3>Uniforme - Camisa polo</h3>
+          <div class="cost-badge">$ 500</div>
+        </div>
+        <div class="cost-details">
+          <p>Uniforme diario para el colegio.</p>
+        </div>
+      </div>
+      <div class="cost-item">
+        <div class="cost-header">
+          <h3>Uniforme - Deportes con short</h3>
+          <div class="cost-badge">$ 700</div>
+        </div>
+        <div class="cost-details">
+          <p>Uniforme para actividades deportivas.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div id="primaria" class="cost-section">
+    <h2>Primaria</h2>
+    <div class="costs-grid">
+      <div class="cost-item">
+        <div class="cost-header">
+          <h3>Inscripción anual</h3>
+          <div class="cost-badge">$ 3,000</div>
+        </div>
+        <div class="cost-details">
+          <p>Cuota única para el ingreso al nivel primaria.</p>
+        </div>
+      </div>
+      <div class="cost-item">
+        <div class="cost-header">
+          <h3>Mensualidad</h3>
+          <div class="cost-badge">$ 3,800</div>
+        </div>
+        <div class="cost-details">
+          <p>Pago mensual por servicios educativos.</p>
+        </div>
+      </div>
+      <div class="cost-item">
+        <div class="cost-header">
+          <h3>Uniforme - Camisa polo</h3>
+          <div class="cost-badge">$ 500</div>
+        </div>
+        <div class="cost-details">
+          <p>Uniforme diario para el colegio.</p>
+        </div>
+      </div>
+      <div class="cost-item">
+        <div class="cost-header">
+          <h3>Uniforme - Deportes con short</h3>
+          <div class="cost-badge">$ 700</div>
+        </div>
+        <div class="cost-details">
+          <p>Uniforme para actividades deportivas.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div id="secundaria" class="cost-section">
+    <h2>Secundaria</h2>
+    <div class="costs-grid">
+      <div class="cost-item">
+        <div class="cost-header">
+          <h3>Inscripción anual</h3>
+          <div class="cost-badge">$ 3,500</div>
+        </div>
+        <div class="cost-details">
+          <p>Cuota única para el ingreso al nivel secundaria.</p>
+        </div>
+      </div>
+      <div class="cost-item">
+        <div class="cost-header">
+          <h3>Mensualidad</h3>
+          <div class="cost-badge">$ 4,500</div>
+        </div>
+        <div class="cost-details">
+          <p>Pago mensual por servicios educativos.</p>
+        </div>
+      </div>
+      <div class="cost-item">
+        <div class="cost-header">
+          <h3>Uniforme - Camisa polo</h3>
+          <div class="cost-badge">$ 500</div>
+        </div>
+        <div class="cost-details">
+          <p>Uniforme diario para el colegio.</p>
+        </div>
+      </div>
+      <div class="cost-item">
+        <div class="cost-header">
+          <h3>Uniforme - Deportes con short</h3>
+          <div class="cost-badge">$ 700</div>
+        </div>
+        <div class="cost-details">
+          <p>Uniforme para actividades deportivas.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div id="preparatoria" class="cost-section">
+    <h2>Preparatoria</h2>
+    <div class="costs-grid">
+      <div class="cost-item">
+        <div class="cost-header">
+          <h3>Inscripción anual</h3>
+          <div class="cost-badge">$ 4,000</div>
+        </div>
+        <div class="cost-details">
+          <p>Cuota única para el ingreso al nivel preparatoria.</p>
+        </div>
+      </div>
+      <div class="cost-item">
+        <div class="cost-header">
+          <h3>Mensualidad</h3>
+          <div class="cost-badge">$ 5,200</div>
+        </div>
+        <div class="cost-details">
+          <p>Pago mensual por servicios educativos.</p>
+        </div>
+      </div>
+      <div class="cost-item">
+        <div class="cost-header">
+          <h3>Uniforme - Camisa polo</h3>
+          <div class="cost-badge">$ 500</div>
+        </div>
+        <div class="cost-details">
+          <p>Uniforme diario para el colegio.</p>
+        </div>
+      </div>
+      <div class="cost-item">
+        <div class="cost-header">
+          <h3>Uniforme - Deportes con short</h3>
+          <div class="cost-badge">$ 700</div>
+        </div>
+        <div class="cost-details">
+          <p>Uniforme para actividades deportivas.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="costs-footer">
+    <div class="costs-info">
+      <h3>Información adicional</h3>
+      <p>Para más detalles sobre descuentos, becas y planes de pago flexibles, comunícate con nuestra administración.</p>
+      <div class="contact-options">
+        <a href="{{ url_for('contacto') }}" class="btn btn-primary">Contactar administración</a>
+        <a href="tel:6691161289" class="btn btn-secondary">Llamar ahora</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<script>
+function showSection(sectionId) {
+  // Hide all sections
+  const sections = document.querySelectorAll('.cost-section');
+  sections.forEach(section => section.classList.remove('active'));
+
+  // Remove active from buttons
+  const buttons = document.querySelectorAll('.section-btn');
+  buttons.forEach(button => button.classList.remove('active'));
+
+  // Show selected section
+  document.getElementById(sectionId).classList.add('active');
+
+  // Add active to clicked button
+  event.target.classList.add('active');
+}
+</script>
+{% endblock %}

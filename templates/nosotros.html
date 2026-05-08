@@ -1,0 +1,41 @@
+{% extends 'layout.html' %}
+{% block content %}
+<section class="section">
+  <div class="about-header">
+    <h1 class="about-title">Sobre Nosotros</h1>
+    <div class="title-underline"></div>
+    <p class="about-subtitle">Descubre quiénes somos y nuestro compromiso con la educación</p>
+  </div>
+
+  <div class="about-section">
+    <div class="about-image">
+      <img src="{{ url_for('static', filename='images/mhvpm.jpg') }}" alt="Colegio Remington" class="about-img">
+    </div>
+    <div class="about-content">
+      <h2>Nuestra Historia</h2>
+      <p>El Colegio Remington fue fundado en 1985 con la visión de proporcionar educación de calidad. A lo largo de los años, hemos crecido para convertirnos en una institución de referencia en la región, comprometida con la excelencia académica y la formación integral de nuestros estudiantes.</p>
+      <p>Nuestro compromiso va más allá de la educación académica. Buscamos desarrollar en cada estudiante valores sólidos, pensamiento crítico y las habilidades necesarias para enfrentar los desafíos del siglo XXI.</p>
+    </div>
+  </div>
+
+  <div class="values-grid">
+    <div class="value-card">
+      <div class="value-icon">🎯</div>
+      <h3>Nuestra Misión</h3>
+      <p>Formar líderes integrales con valores sólidos, pensamiento crítico y habilidades para enfrentar los retos del siglo XXI en un ambiente seguro y acogedor.</p>
+    </div>
+
+    <div class="value-card">
+      <div class="value-icon">🌟</div>
+      <h3>Nuestra Visión</h3>
+      <p>Ser referente educativo en la región, reconocido por la excelencia académica, la innovación y el bienestar de la comunidad estudiantil.</p>
+    </div>
+
+    <div class="value-card">
+      <div class="value-icon">💡</div>
+      <h3>Nuestros Valores</h3>
+      <p>Integridad, excelencia, inclusión y responsabilidad social. Creemos en el desarrollo holístico de cada estudiante.</p>
+    </div>
+  </div>
+</section>
+{% endblock %}
