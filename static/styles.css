@@ -286,6 +286,10 @@ main {
 
 .section {
   margin-bottom: 5rem;
+  padding: 0 1.5rem;
+  margin-left: auto;
+  margin-right: auto;
+  max-width: 1200px;
 }
 
 .section-title {
@@ -448,10 +452,39 @@ main {
 @media (max-width: 900px) {
   .offer-section-content {
     grid-template-columns: 1fr;
+    gap: 2rem;
   }
 
   .offer-section-image img {
     max-width: 100%;
+  }
+}
+
+@media (max-width: 768px) {
+  .section {
+    padding: 0 1rem;
+  }
+
+  .offer-section h2 {
+    font-size: 1.5rem;
+  }
+
+  .offer-section-image {
+    max-height: 300px;
+  }
+}
+
+@media (max-width: 480px) {
+  .section {
+    padding: 0 0.75rem;
+  }
+
+  .offer-section h2 {
+    font-size: 1.3rem;
+  }
+
+  .centered-grid {
+    grid-template-columns: 1fr;
   }
 }
 
